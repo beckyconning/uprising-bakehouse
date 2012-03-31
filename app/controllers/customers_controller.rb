@@ -24,7 +24,7 @@ class CustomersController < ApplicationController
   # GET /customers/new
   # GET /customers/new.json
   def new
-    @customer = Customer.new
+    @customer = Customer.new(params[:customer])
 
     respond_to do |format|
       format.html # new.html.erb

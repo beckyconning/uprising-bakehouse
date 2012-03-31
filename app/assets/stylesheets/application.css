@@ -15,6 +15,10 @@
 body, input, textarea, ol, ul, li, td, p, label {
 	font-family: Alegreya;
 }
+body, html {
+	margin: 0;
+	padding: 0;
+}
 h2 {
 	font-weight: normal;
 	font-size: 24pt;
@@ -38,7 +42,7 @@ a:hover {
 	text-decoration: none;
 	border-bottom: 1px dotted #000;
 }
-b {
+b, label, h2 {
 	color: #301F17;
 }
 p, form, label {
@@ -54,7 +58,8 @@ div.container {
 	margin-right: auto;
 }
 div#header {
-	margin-top: 24px;
+	padding-top: 14pt;
+	margin-top: 0px;
 	margin-bottom: 10pt;
 }
 div#navigation {
@@ -132,14 +137,77 @@ div.small_section:nth-child(odd) {
 div.section p {
 }
 div.section input[type="text"], div.section input[type="password"], div.section textarea {
-	width: 560px;
+	width: 500px;
+	display: block;
+	float: left;
+}
+input[type="submit"] {
+	-webkit-appearance: button;
+	font-family: Alegreya;
+	height: 28px;
+}
+div.section input[type="submit"] {
+	width: 80px;
+	font-size: 14px;
+	font-family: Alegreya;
+	-webkit-appearance: button;
+	height: 28px;
+	display: block;
+	float: left;
+	margin-top: 2px;
+	margin-left: 4pt;
 }
 div.section textarea {
-
+	
 }
 input:focus, textarea:focus {
-	outline: 2px solid #68DDC6;
 }
 div.footer {
+	margin-top: 24pt;
+	margin-bottom: 65%;
 	text-align: center;
+	background-image: url('line.png');
+	background-repeat: repeat-x;
+	background-position: center center;
+	width: 100%;
+	clear: both;
+}
+div.footer span {
+	background-color: #fff;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+div.section.bread_club img {
+	margin-top: 24pt;
+}
+div.flash {
+	margin-bottom: 0;
+	text-align: center;
+	color: #68DDC6;
+}
+ul {
+	margin-top:0;
+}
+ul#ingredients_list {
+	padding-left: 0;
+	width:380px;
+	margin-bottom:20px;
+	overflow:hidden;
+}
+ul#ingredients_list li {
+	line-height:1.5em;
+	float:left;
+	display:inline;
+	width:50%;
+}
+div.field {
+	margin-bottom: 8pt;
+}
+label {
+	font-weight: bold;
+}
+
+ul#ingredients_list li label {
+	font-weight: normal;
+	color: #000;
 }

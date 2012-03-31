@@ -12,19 +12,22 @@
 <body>
 	<div class="container">
 		<div id="header">
-			<img src="assets/header_brown.png" alt="Uprising Bakehouse, Community Bread Co-op, No 254.">
+			<img src="/assets/header_brown.png" alt="Uprising Bakehouse, Community Bread Co-op, No 254.">
 		</div>
-		<div id="navigation">
-			<ul>
-				<li><a href="#about_us">About us</a></li>
-				<li><a href="#how_to_find_us">How to find us</a></li>
-				<li><a href="#our_bakes">Our bakes</a></li>
-				<li><a href="#bread_club">Bread club</a></li>
-			</ul>
+		<%= render :partial => "sections/navigation" %>
+		
+		<% if notice || alert %>
+			<div class="flash">
+				<% if notice %><%= notice %><% end %>
+		  	<% if alert %><%= alert %><% end %>
+			</div>
+		<% end %>
+		
+		<div>
+		  <%= yield %>
+		  
+		  <div class="section" style="margin:0; height:0;"></div>
 		</div>
-		
-		<%= yield %>
-		
 		
 		<div class="footer">
 		  <span>

@@ -1,4 +1,4 @@
-<%= form_for(@order) do |f| %>
+<%= form_for([@customer, @order]) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -12,17 +12,32 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address %>
+    <%= f.label :address, "The address that you want the order to go to:" %><br />
+    <%= f.text_area :address, :cols => 40, :rows => 6 %>
   </div>
   <div class="field">
-    <%= f.label :postcode %><br />
+    <%= f.label :postcode, "The postcode that you want the order to go to:" %><br />
     <%= f.text_field :postcode %>
   </div>
   <div class="field">
-    <%= f.label :number_of_loaves %><br />
+    <%= f.label :number_of_loaves, "The number of loaves that you want" %><br />
     <%= f.number_field :number_of_loaves %>
   </div>
+	<div class="field">
+		<label>The ingredients that you don't want in your bread:</label>
+		<ul id="ingredients_list">
+			<%= hidden_field_tag "order[excluded_ingredient_ids][]" %>
+			<% Ingredient.all.each do |ingredient| %>
+				<li>
+					<label>
+						<%= check_box_tag "order[excluded_ingredient_ids][]",
+							ingredient.id, @order.excluded_ingredients.include?(ingredient) %>
+						<%= ingredient.name %>
+					</label>
+				</li>
+			<% end %>
+		</ul>
+	</div>
   <div class="actions">
     <%= f.submit %>
   </div>

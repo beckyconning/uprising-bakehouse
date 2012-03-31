@@ -24,7 +24,11 @@ describe CustomersController do
   # Customer. As you add validations to Customer, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    { 
+      :email => "someone@somewhere.some",
+      :password => "password",
+      :password_confirmation => "password"
+    }
   end
   
   # This should return the minimal set of values that should be in the session
@@ -34,26 +38,11 @@ describe CustomersController do
     {}
   end
 
-  describe "GET index" do
-    it "assigns all customers as @customers" do
-      customer = Customer.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:customers).should eq([customer])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested customer as @customer" do
       customer = Customer.create! valid_attributes
       get :show, {:id => customer.to_param}, valid_session
       assigns(:customer).should eq(customer)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new customer as @customer" do
-      get :new, {}, valid_session
-      assigns(:customer).should be_a_new(Customer)
     end
   end
 

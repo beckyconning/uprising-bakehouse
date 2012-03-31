@@ -1,12 +1,19 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  before_filter :get_customer
   def index
-    @orders = Order.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @orders }
+    @orders = @customer.orders
+    if @orders.count == 0 then
+      respond_to do |format|
+        format.html { redirect_to new_customer_order_path(@customer) }
+        format.json { render json: @orders }
+      end
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @orders }
+      end
     end
   end
 
@@ -24,7 +31,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-    @order = Order.new
+    @order = @customer.orders.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +47,11 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(params[:order])
+    @order = @customer.orders.new(params[:order])
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to [@customer, @order], notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new" }
@@ -79,5 +86,10 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  def get_customer
+    @customer = Customer.find_by_id(params[:customer_id])
   end
 end

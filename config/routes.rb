@@ -5,10 +5,11 @@ Uprisingbakehouse::Application.routes.draw do
 
   devise_for :customers
 
-  resources :orders
-
-  resources :customers
-
+  
+  resources :customers do
+    resources :orders
+  end
+  
   get "sections/index"
 
   # The priority is based upon order of creation:
