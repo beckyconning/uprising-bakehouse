@@ -15,9 +15,12 @@
 body, input, textarea, ol, ul, li, td, p, label {
 	font-family: Alegreya;
 }
-body, html {
+body {
 	margin: 0;
 	padding: 0;
+	/*background-image: url('background.png');
+	background-repeat: repeat-x;
+	background-position: bottom left;*/
 }
 h2 {
 	font-weight: normal;
@@ -28,6 +31,10 @@ h2 {
 	margin-bottom: 0;
 	margin-left: 0;
 	color: #301F17;
+}
+h3 {
+	width: auto;
+	display: inline;
 }
 input, ol, ul, li, td, p, label, textarea {
 	font-size: 12pt;
@@ -42,7 +49,7 @@ a:hover {
 	text-decoration: none;
 	border-bottom: 1px dotted #000;
 }
-b, label, h2 {
+b, label, h2, tr {
 	color: #301F17;
 }
 p, form, label {
@@ -52,17 +59,39 @@ p, form, label {
 	margin-bottom: 1em;
 	margin-left: 0;
 }
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+tr {
+	text-align: left;
+	min-height: 2em;
+}
+td, th {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+td:first-child, th:first-child {
+	padding-left: 0;
+}
+td:last-child, th:last-child {
+	padding-right: 0;
+}
+tr:nth-child(even) {
+	background-color: #FFECB6;
+}
 div.container {
 	width: 760px;
 	margin-left: auto;
 	margin-right: auto;
 }
 div#header {
-	padding-top: 14pt;
+	padding-top: 18pt;
 	margin-top: 0px;
 	margin-bottom: 10pt;
 }
 div#navigation {
+	padding-bottom: 6pt;
 }
 div#navigation ul {
 	margin-top: 0;
@@ -83,61 +112,64 @@ div#navigation li:last-child {
 	margin-right: 0;
 }
 div.section {
+	width: 100%;
+	vertical-align: top;
+	display: inline-block;
 	margin-bottom: 8pt;
 	clear: both;
 }
-div.small_section {
-	clear: right;
-	width: 372px;
-	float: left;
+div.section div.text {
+	max-width: 590px;
+	display: inline-block;
+	vertical-align: middle;
 }
-div.section:nth-of-type(odd) img, div.section:nth-of-type(odd) div.map {
+div.section.small {
+	width: 377px;
+}
+div.section.small.has_image div.text {
+	max-width: 211px;
+}
+div.section img, div.section div.map_container {
+	vertical-align: middle;
+	display: inline-block;
+}
+div.section:nth-of-type(4n+1) img, div.section:nth-of-type(odd) div.map_container {
 	-webkit-transform: rotate(4deg);
--moz-transform: rotate(4deg);
--o-transform: rotate(4deg);
--ms-transform: rotate(4deg);
-	margin-top: 14pt;
+	-moz-transform: rotate(4deg);
+	-o-transform: rotate(4deg);
+	-ms-transform: rotate(4deg);
 	margin-left: 8pt;
-	float: right;
 }
-div.section:nth-of-type(even) img, div.section:nth-of-type(even) div.map {
+div.section:nth-of-type(4n+2) img, div.section:nth-of-type(even) div.map_container {
 	-webkit-transform: rotate(-2deg);
--moz-transform: rotate(-2deg);
--o-transform: rotate(-2deg);
--ms-transform: rotate(-2deg);
-	float: left;
-	margin-top: 14pt;
+	-moz-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
 	margin-right: 8pt;
 }
-div.small_section img, div.small_section div.map {
-	float: right;
-	margin-top: 14pt;
+div.section:nth-of-type(4n+3) img, div.section:nth-of-type(odd) div.map_container {
+	-webkit-transform: rotate(-1deg);
+	-moz-transform: rotate(-1deg);
+	-o-transform: rotate(-1deg);
+	-ms-transform: rotate(-1deg);
 	margin-left: 8pt;
-	margin-right: 0;
 }
-div.small_section:nth-child(odd) img, div.small_section:nth-child(odd) div.map {
-	-webkit-transform: rotate(-2deg);
--moz-transform: rotate(-2deg);
--o-transform: rotate(-2deg);
--ms-transform: rotate(-2deg);
+div.section:nth-of-type(4n+4) img, div.section:nth-of-type(even) div.map_container {
+	-webkit-transform: rotate(-3.5deg);
+	-moz-transform: rotate(-3.5deg);
+	-o-transform: rotate(-3.5deg);
+	-ms-transform: rotate(-3.5deg);
+	margin-right: 8pt;
 }
-div.small_section:nth-child(even) img, div.small_section:nth-child(even) div.map {
-	-webkit-transform: rotate(4deg);
--moz-transform: rotate(4deg);
--o-transform: rotate(4deg);
--ms-transform: rotate(4deg);
+div#bread_club.section img {
+	margin-top: 26pt;
 }
-div.section div.map {
+div.map {
 	width: 152px;
 	height: 152px;
 }
-div.small_section:nth-child(odd) {
-	margin-right: 14px;
-}
-div.section p {
-}
 div.section input[type="text"], div.section input[type="password"], div.section textarea {
-	width: 500px;
+	width: 400px;
 	display: block;
 	float: left;
 }
@@ -157,28 +189,33 @@ div.section input[type="submit"] {
 	margin-top: 2px;
 	margin-left: 4pt;
 }
-div.section textarea {
-	
-}
 input:focus, textarea:focus {
 }
 div.footer {
 	margin-top: 24pt;
-	margin-bottom: 65%;
+	margin-bottom: 100px;
 	text-align: center;
-	background-image: url('line.png');
-	background-repeat: repeat-x;
-	background-position: center center;
 	width: 100%;
 	clear: both;
 }
-div.footer span {
+div.footer div {
+	background-image: url('line.png');
+	background-repeat: repeat-x;
+	background-position: center center;
+}
+div.footer div img {
+	margin-top: 4px;
+}
+div.footer p {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 4px;
+}
+div.footer div span {
 	background-color: #fff;
 	padding-left: 1em;
 	padding-right: 1em;
-}
-div.section.bread_club img {
-	margin-top: 24pt;
 }
 div.flash {
 	margin-bottom: 0;
@@ -207,7 +244,7 @@ label {
 	font-weight: bold;
 }
 
-ul#ingredients_list li label {
+ul li label {
 	font-weight: normal;
 	color: #000;
 }

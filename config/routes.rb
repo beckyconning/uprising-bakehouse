@@ -1,4 +1,8 @@
 Uprisingbakehouse::Application.routes.draw do
+  get "staff/index"
+
+  resources :payment_notifications
+
   devise_for :staff_members
 
   resources :staff_members
@@ -6,11 +10,18 @@ Uprisingbakehouse::Application.routes.draw do
   devise_for :customers
 
   
-  resources :customers do
-    resources :orders
-  end
+  resources :customers
   
+  resources :orders do
+    member do
+      get "checkout"
+      get "finish"
+    end
+  end
+    
   get "sections/index"
+  
+  get "staff" => "staff#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

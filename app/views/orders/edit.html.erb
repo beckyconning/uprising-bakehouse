@@ -1,6 +1,10 @@
-<h1>Editing order</h1>
+<h2>Editing order</h2>
+<p>Please note that if you make changes to or cancel your order within 24 hours of the delivery date it might not take effect until your next delivery date.</p>
+
+<p>If you want to change the number of loaves or how often you receive a delivery please cancel this order and create a new one with the updated information. Thank you!</p>
+
+<p><%= link_to 'Click here to cancel this order', @order, confirm: 'Are you sure?', method: :delete %></p>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @order %> |
 <%= link_to 'Back', orders_path %>

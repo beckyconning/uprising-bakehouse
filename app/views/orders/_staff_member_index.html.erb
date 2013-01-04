@@ -1,0 +1,48 @@
+<%= form_tag(orders_path, :method => :get) do %>
+	<p>
+		Filter orders by delivery day:
+    <%= select_tag "delivery_day", lambda { 
+	  PostcodeArea.delivery_days.collect { |day| "<option>#{day.capitalize}</option>" }.join
+	}.call.html_safe %>
+		<%= submit_tag "Filter" %>
+	</p>
+<% end -%>
+
+<%= form_tag(orders_path, :method => :get) do %>
+	<% @group_index_combinations.each do |key, combination| %>
+		<% combination.each do |index| %>
+		  <%= hidden_field_tag "group_index_combinations[#{key}][]", index %>
+		<% end %>
+	<% end %>
+  <p>There are <%= @orders.count %> orders for delivery this week. Of which</p>
+	<ul>
+  <% @grouped_orders.each_with_index do |group, index| %>
+		<li>
+  	  <label>
+		  	<%= check_box_tag "group_index_combinations[#{@group_index_combinations.count}][]", index %>
+		    <%= group.count %> must not contain 
+		      <%= Order.excluded_ingredients_list(Order.all_excluded_ingredients(group)) %>
+      </label>
+		</li>
+  <% end %>
+	</ul>
+	<p><%= submit_tag "Combine" %> <%= submit_tag "Reset" %></p>
+<% end %>
+
+<% index = 0 %>
+<% @postcode_areas.each_with_index do |area, area_index| %>
+	<div class="section">
+  	<h2><%= area.postcode_prefix %></h2>
+		<div class="text">
+		  <% area.orders.each_with_index do |order, order_index| %>
+		    <p>
+		    	<h3>
+		        <% index = index + 1 %>
+						<%= index %>:
+					</h3> 
+					<%= order.address %> <%= order.postcode %>
+		    </p>
+		  <% end %>
+		</div>
+	</div>
+<% end %>

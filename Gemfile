@@ -9,7 +9,6 @@ gem 'sqlite3'
 gem 'devise'
 #gem 'activemerchant', :require => 'active_merchant'
 gem 'paypal-recurring'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -25,7 +24,7 @@ end
 group :development do
   gem 'rspec-rails'
   gem 'watchr'
-  
+  gem "nifty-generators", :group => :development
 end
 
 group :test do
@@ -34,6 +33,7 @@ group :test do
   gem 'webrat'
   gem 'watchr'
 end
+
 
 gem 'jquery-rails'
 

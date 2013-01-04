@@ -1,0 +1,10 @@
+<%= render :partial => "ballot_boxes/uncompleted" %>
+
+<p>Are you <b>for</b> or <b>against</b> the motion?</p>
+
+<%= form_for [@ballot_box, @vote] do |f| -%>
+	<p><%= f.radio_button :is_for, true %> <%= f.label :is_for, "I am for the motion." %></p>
+	<p><%= f.radio_button :is_for, false %> <%= f.label :is_for, "I am against the motion." %></p>
+	<%= f.hidden_field :invitation_code, :value => @invitation.code %>
+	<p><%= f.submit "Cast your vote anonymously", :disable_with => 'Casting your vote...' %></p>
+<% end -%>

@@ -60,6 +60,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.2.0)
+    nifty-generators (0.4.6)
     nokogiri (1.5.2)
     orm_adapter (0.0.7)
     paypal-recurring (0.1.6)
@@ -137,6 +138,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
+  nifty-generators
   paypal-recurring
   rails (= 3.2.2)
   rspec-rails

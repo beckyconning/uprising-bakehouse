@@ -1,0 +1,29 @@
+<h2>Your orders</h1>
+	<p>Your next delivery is on <%= @customer.order_with_soonest_delivery.next_delivery_date.british_format %>.
+	<p><%= link_to 'Click here to place another order', new_order_path %></p>
+	<p><%= link_to 'Click here to cancel all orders and delete your account', @customer, confirm: 'Are you sure?', method: :delete %></p>
+
+<table>
+  <tr>
+    <th>Postcode</th>
+    <th>Next delivery on</th>
+    <th>Number of loaves</th>
+    <th>Excluded Ingredients</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.postcode %></td>
+    <td><%= order.next_delivery_date.strftime("%a %d/%m/%Y") %></td>
+    <td><%= order.number_of_loaves %></td>
+    <td><%= order.excluded_ingredients_list %></td>
+    <td><%= link_to 'Make changes to this order', edit_order_path(order) -%></td>
+    <td><%= link_to 'Cancel this order', order, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+

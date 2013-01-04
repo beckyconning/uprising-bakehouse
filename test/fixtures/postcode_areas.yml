@@ -1,0 +1,16 @@
+1:
+    name: Rusholme and Fallowfield
+    postcode_prefix: m14
+    delivery_day: thursday
+2:
+    name: Didsbury, Northenden and Withington
+    postcode_prefix: m20
+    delivery_day: friday
+3:
+    name: Levenshulme, Ladybarn, Burnage and Green End
+    postcode_prefix: m19
+    delivery_day: friday
+4:
+    name: Hulme
+    postcode_prefix: m15
+    delivery_day: thursday

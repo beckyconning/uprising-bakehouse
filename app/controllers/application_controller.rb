@@ -2,6 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   def after_sign_in_path_for(resource)
-    customer_orders_path(resource)
+    orders_path
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120330194609) do
+ActiveRecord::Schema.define(:version => 20120401161412) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(:version => 20120330194609) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "interest_in_postcode_areas", :force => true do |t|
+    t.string   "postcode_prefix"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.string   "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "order_excluded_ingredients", :force => true do |t|
     t.integer  "order_id"
     t.integer  "ingredient_id"
@@ -47,13 +59,35 @@ ActiveRecord::Schema.define(:version => 20120330194609) do
 
   create_table "orders", :force => true do |t|
     t.text     "address"
-    t.string   "postcode"
+    t.string   "postcode_prefix"
+    t.string   "postcode_suffix"
     t.integer  "number_of_loaves"
     t.integer  "customer_id"
-    t.string   "paypal_token"
-    t.string   "paypal_profile_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "paypal_payer_id"
+    t.string   "paypal_recurring_profile_id"
+    t.boolean  "paypal_recurring_profile_active"
+    t.datetime "last_payment_date"
+    t.integer  "frequency_in_weeks"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  create_table "payment_notifications", :force => true do |t|
+    t.text     "params"
+    t.integer  "order_id"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.string   "create"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "postcode_areas", :force => true do |t|
+    t.string   "postcode_prefix"
+    t.string   "delivery_day"
+    t.string   "name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "staff_members", :force => true do |t|

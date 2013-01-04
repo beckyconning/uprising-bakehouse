@@ -1,0 +1,33 @@
+<p>
+  <b>Address:</b>
+  <%= order.address %>
+</p>
+
+<p>
+  <b>Postcode:</b>
+  <%= order.postcode %>
+</p>
+
+<p>
+  <b>Number of loaves:</b>
+  <%= order.number_of_loaves %>
+</p>
+<p>
+	<b>Excluded ingredients:</b>
+	<%= order.excluded_ingredients.collect { |ingredient| ingredient.name }.join(", ") %>
+</p>
+
+<p>	
+	<b>Delivery and billing day:</b>
+	<%= order.delivery_day.capitalize %>
+</p>
+
+<p>	
+	<b>Delivery every:</b>
+	<%= order.frequency_in_weeks %> weeks
+</p>
+
+<p>
+	<b>Price per delivery:</b>
+	<%= number_to_currency(order.price, :unit => "£") %>
+</p>

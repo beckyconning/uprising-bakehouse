@@ -25,10 +25,13 @@ class CustomersController < ApplicationController
   # GET /customers/new.json
   def new
     @customer = Customer.new(params[:customer])
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @customer }
+    if Customer.find_by_email(@customer.email)
+      redirect_to new_session_path(@customer, params)
+    else
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @customer }
+      end
     end
   end
 
@@ -44,7 +47,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to orders_path, notice: 'Customer was successfully created.' }
         format.json { render json: @customer, status: :created, location: @customer }
       else
         format.html { render action: "new" }

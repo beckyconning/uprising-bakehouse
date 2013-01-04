@@ -1,11 +1,15 @@
 <div id="navigation">
 	<ul>
-		<li><a href="#about_us">About us</a></li>
-		<li><a href="#how_to_find_us">How to find us</a></li>
-		<li><a href="#our_bakes">Our bakes</a></li>
-		<li><a href="#bread_club">Bread club</a></li>
+		<li><a href="/#about_us">About us</a></li>
+		<li><a href="/#how_to_find_us">How to find us</a></li>
+		<li><a href="/#our_bakes">Our bakes</a></li>
+		<li><a href="/#bread_club">Bread club</a></li>
 		<% if customer_signed_in? %>
-			<%= link_to "Sign out", destroy_customer_session_path, :method => :delete %>
+			<li><%= link_to "My orders", orders_path %></li>
+			<li><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
+		<% end %>
+		<% if staff_member_signed_in? %>
+			<li><%= link_to "Sign out", destroy_staff_member_session_path, :method => :delete %></li>
 		<% end %>
 	</ul>
 </div>

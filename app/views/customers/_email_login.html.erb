@@ -1,8 +1,7 @@
 <%= form_tag new_customer_path, :method => :get do |f| -%>
 	<p>
-  	<%= label_tag "customer[email]", "Type your email address and press enter to get started:" %><br />
+  	<%= label_tag "customer[email]", "Type your email address to place, update or cancel an order:" %><br />
   	<%= text_field_tag "customer[email]" %>
 		<%= submit_tag "Conintue", :disable_with => 'Loading...' %>
 	</p>
-		
 <% end -%>

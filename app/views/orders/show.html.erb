@@ -1,28 +1,12 @@
 <h2>Confirm your order</h2>
 <p>You can make changes later (if you make an order within 24 hours of the delivery date the changes might be noticed until your next delivery).</p>
 
-<p>
-  <b>Address:</b>
-  <%= @order.address %>
-</p>
+<%= render :partial => "show", :locals => { :order => @order } %>
 
-<p>
-  <b>Postcode:</b>
-  <%= @order.postcode %>
-</p>
+<% unless @order.payment_provided? %>
+  <p>
+    <%= link_to image_tag( "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif", :title => "Checkout with PayPal"), checkout_order_path(@order) %>
+  </p>
+<% end %>
 
-<p>
-  <b>Number of loaves:</b>
-  <%= @order.number_of_loaves %>
-</p>
-
-<p>
-	<b>Excluded ingredients:</b>
-	<% @order.excluded_ingredients.each do |ingredient| %>
-		<%= ingredient.name %> 
-		<%= "," unless ingredient == @order.excluded_ingredients.last -%>
-	<% end -%>
-</p>
-
-
-<%= link_to 'Any changes?', edit_customer_order_path(@customer, @order) %>
+<%= link_to 'Any changes?', edit_order_path(@order) %>
